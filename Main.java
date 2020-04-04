@@ -33,6 +33,11 @@ public class Main {
 
         int REQUIRED_ARGS = 4;
 
+        if(args.length != REQUIRED_ARGS){
+            System.out.println("Requires 4 args, [mode (stream/view), local port, remote port, remote host (string)]");
+            System.exit(1);
+        }
+
         //String mode
         Mode mode = Mode.get(args[0]);
         int localPort = Integer.valueOf(args[1]);
@@ -41,11 +46,6 @@ public class Main {
 
         // byte size of payload
         int chunks = 32;
-
-        if(args.length != REQUIRED_ARGS){
-            System.out.println("Requires 4 args, [mode (stream/view), local port, remote port, remote host (string)]");
-            System.exit(1);
-        }
 
         if(mode == Mode.STREAM){
             Server server = new Server(localPort);
